@@ -1,0 +1,4 @@
+FROM apachepulsar/pulsar:latest
+
+COPY ./consumer.py /root/consumer.py
+COPY ./producer.py /root/producer.py
