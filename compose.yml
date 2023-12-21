@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 networks:
   pulsar:
     driver: bridge
@@ -95,8 +95,9 @@ services:
       - "6650:6650"
       - "8080:8080"
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf && exec bin/pulsar broker"
-  
+
   pulsar-producer:
+    container_name: producer
     build:
       context: .
       dockerfile: ./Dockerfile.pulsar-client
@@ -104,11 +105,11 @@ services:
       - zookeeper
       - pulsar-init
     restart: on-failure
-    entrypoint: /root/producer.py
     networks:
       - pulsar
-  
+
   pulsar-consumer:
+    container_name: consumer
     build:
       context: .
       dockerfile: ./Dockerfile.pulsar-client
@@ -116,6 +117,5 @@ services:
       - zookeeper
       - pulsar-init
     restart: on-failure
-    entrypoint: /root/consumer.py
     networks:
       - pulsar
