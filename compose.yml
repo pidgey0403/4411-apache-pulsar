@@ -102,8 +102,8 @@ services:
       context: .
       dockerfile: ./Dockerfile.pulsar-client
     depends_on:
-      - zookeeper
       - pulsar-init
+      - broker
     restart: on-failure
     networks:
       - pulsar
@@ -114,8 +114,8 @@ services:
       context: .
       dockerfile: ./Dockerfile.pulsar-client
     depends_on:
-      - zookeeper
       - pulsar-init
+      - broker
     restart: on-failure
     networks:
       - pulsar
